@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:10:39 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/14 03:46:46 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/16 01:25:28 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,19 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-int			ft_isdigit(int c);
-static int	ft_convert(const char *str, int i, int result, int sign);
-int			ft_atoi(const char *str);
-int isempty(struct stack *s);
-void	sa(t_list *stack_a);
-void	sb(t_list *stack_b);
-void	ss(t_list *stack_a, t_list *lst1, t_list *stack_b, t_list *lst2);
-void	ra(t_list *stack_a);
-void	rb(t_list *stack_b);
-void	rr(t_list *stack_a, t_list *lst1, t_list *stack_b, t_list *lst2);
+int		ft_atoi(const char *str);
+void	sa(t_list **stack_a);
+void	sb(t_list **stack_b);
+void	ss(t_list **stack_a, t_list **stack_b);
+void	ra(t_list **stack_a);
+//void	rb(t_list *stack_b);
+//void	rr(t_list *stack_a, t_list *stack_b);
 void	push_a(t_list **lst, int val);
 void	push_b(t_list *lst, int val);
+t_list	*ft_lstnew(int content);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_putnbr(int n);
+t_list	*push(t_list **stack, char **argv);
 
 #endif
