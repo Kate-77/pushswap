@@ -6,7 +6,7 @@
 #    By: kmoutaou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/15 21:32:50 by kmoutaou          #+#    #+#              #
-#    Updated: 2022/04/15 21:35:17 by kmoutaou         ###   ########.fr        #
+#    Updated: 2022/04/16 20:19:19 by kmoutaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,22 +17,19 @@ CC			= cc
 FLAGS		= -Wall -Wextra -Werror
 
 SRCS		= main.c tools/lists.c tools/operations1.c tools/atoi.c \
+			  tools/operations2.c
 
 OBJS		= $(SRCS:.c=.o)
 
-HEADERS		= .
+HEADERS		= include/pushswap.h
 
 all: 		$(NAME)
 
-$(NAME):	$(OBJS) 
-			ar rcs $(NAME) $(OBJS)
-
-%.o: %.c
-			$(CC) $(FLAGS) -c $< -o $(<:.c=.o) -I $(HEADERS)
-			ar rcs $(NAME) ${<:.c=.o}
+$(NAME):	$(SRCS)
+			$(CC) $(FLAGS) $(SRCS) -o $(NAME)
 
 clean:
-			rm -f $(OBJS)
+			rm -f $(NAME)
 
 fclean: 	clean
 			rm -f $(NAME)

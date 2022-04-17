@@ -6,16 +6,36 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 00:11:11 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/16 01:25:23 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/17 02:59:44 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 #include <stdio.h>
+
+void    delete_last(t_list **stack)
+{
+    t_list  *head;
+
+    head = *stack;
+    while ((*stack)->next->next != NULL)
+        *stack = (*stack)->next;
+    (*stack)->next = NULL;
+    (*stack) = head;
+    return ;
+}
+
+void	delete_first(t_list **stack)
+{
+	*stack = (*stack)->next;
+	return ;
+}
+
 void	sa(t_list **stack_a)
 {
 	int	tmp;
 
+	printf("sa");
 	tmp = (*stack_a)->content;
 	(*stack_a)->content = (*stack_a)->next->content;
 	(*stack_a)->next->content = tmp;
@@ -42,11 +62,12 @@ void	ss(t_list **stack_a, t_list **stack_b)
 void	ra(t_list **stack_a)
 {
 	t_list	*head;
+	t_list	*tail;
 
 	head = *stack_a;
-	while (stack_a != NULL)
-		*stack_a = (*stack_a)->next;
-	(*stack_a)->next->content = head->content;
+	tail = ft_lstlast(*stack_a);
+	tail->next = ft_lstnew((*stack_a)->content);
+	delete_first(stack_a);
 	return ;
 }
 /*
@@ -68,12 +89,18 @@ void	rr(t_list *stack_a, t_list *stack_b)
 	rb(stack_b);
 	return ;
 }*/
-/*
-void	rra()
+
+void	rra(t_list	**stack_a)
 {
+    t_list  *tail;
 
+	printf("rra");
+    tail = ft_lstlast(*stack_a);
+    ft_lstadd_front(stack_a, ft_lstnew(tail->content));
+    delete_last(stack_a);
+    return ;
 }
-
+/*
 void	rrb()
 {
 

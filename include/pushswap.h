@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:10:39 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/16 01:25:28 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/17 01:44:21 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ t_list	*ft_lstnew(int content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_putnbr(int n);
-t_list	*push(t_list **stack, char **argv);
+void	push(t_list **stack, char **argv);
+void	rra(t_list **stack);
+t_list	*ft_lstlast(t_list *lst);
 
 #endif
