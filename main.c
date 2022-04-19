@@ -6,25 +6,29 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:52:16 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/17 02:51:52 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/19 04:52:59 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/pushswap.h"
+#include "ft_printf/ft_printf.h"
 #include <stdio.h>
 
 void	print(t_list *stack)
 {
 	while (stack != NULL)
 	{
-		ft_putnbr(stack->content);
+		ft_printf("%d", stack->content);
+		//ft_putnbr(stack->content);
+		//ft_putnbr(stack_b->content);
 		write(1, "\n", 1);
 		stack = stack->next;
+		//stack_b = stack_b->next;
 	}
 	return ;
 }
 
-void	push(t_list **stack, char **argv)
+void	fill_stack(t_list **stack, char **argv)
 {
 	int	i;
 
@@ -37,6 +41,15 @@ void	push(t_list **stack, char **argv)
 	return ;
 }
 
+void	push(t_list **source, t_list **destination)
+{
+	if (isempty(*source))
+		return ;
+	ft_lstadd_back(destination, ft_lstnew((*source)->content));
+	delete_first(source);
+	return ;
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
@@ -46,14 +59,11 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	if (argc > 2)
 	{
-		push(&stack_a, argv);
-		//print(stack_a);
-		//sa(&stack_a);
-		//print(stack_a);
-		//rra(&stack_a);
-		//print(stack_a);
-		ra(&stack_a);
+		fill_stack(&stack_a, argv);
 		print(stack_a);
+		//stack_a->stack = 1;
+		push(&stack_a, &stack_b);
+		print(stack_b);
 	}
 	else
 		write(1, "error", 5);

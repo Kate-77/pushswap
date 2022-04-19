@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:10:39 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/17 01:44:21 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/19 04:29:18 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,44 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-struct stack
-{
-    int size;
-    int top;
-    int *items;
-}	t_stack;
-
-
 typedef struct s_list
 {
 	int content;
 	struct s_list	*next;
+	int				stack;
 }	t_list;
 
-int		ft_atoi(const char *str);
-void	sa(t_list **stack_a);
-void	sb(t_list **stack_b);
-void	ss(t_list **stack_a, t_list **stack_b);
-void	ra(t_list **stack_a);
-//void	rb(t_list *stack_b);
-//void	rr(t_list *stack_a, t_list *stack_b);
-void	push_a(t_list **lst, int val);
-void	push_b(t_list *lst, int val);
+typedef struct o_list
+{
+	int pa;
+	int	pb;
+	int	sa;
+	int	sb;
+	int	ss;
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
+}	ops_list;
+
 t_list	*ft_lstnew(int content);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_putnbr(int n);
-void	push(t_list **stack, char **argv);
-void	rra(t_list **stack);
 t_list	*ft_lstlast(t_list *lst);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_putnbr(int n);
+int		ft_atoi(const char *str);
+void	swap(t_list **stack);
+void	ss(t_list **stack_a, t_list **stack_b);
+void	rotate(t_list **stack);
+void	rr(t_list **stack_a, t_list **stack_b);
+void	reverse_rotate(t_list **stack);
+void	rrr(t_list **stack_a, t_list **stack_b);
+void	fill_stack(t_list **stack, char **argv);
+void	delete_last(t_list **stack);
+void	delete_first(t_list **stack);
+int		isempty(t_list *stack);
+void	push(t_list **stack_a, t_list **stack_b);
 
 #endif
