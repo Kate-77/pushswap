@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 20:30:25 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/17 00:37:33 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/20 04:36:08 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,17 @@ t_list	*ft_lstlast(t_list *lst)
 		surf = surf -> next;
 	}
 	return (surf);
+}
+
+int	lst_size(t_list *lst)
+{
+	int	count;
+
+	count = 0;
+	while (lst != NULL)
+	{
+		count++;
+		lst = lst->next;
+	}
+	return (count);
 }

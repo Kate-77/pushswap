@@ -6,23 +6,22 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 00:11:11 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/19 04:52:56 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/20 03:49:04 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
-#include <stdio.h>
 
-void	swap(t_list **stack, t_list **not_tobeused)
+void	swap(t_list **stack, t_list **not_tobeused, int o)
 {
 	int	tmp;
 	(void)not_tobeused;
 
 	if (isempty(*stack))
 		return ;
-	if ((*stack)->stack == 1)
+	if (o == 1)
 		write(1, "sa\n", 3);
-	else if ((*stack)->stack == 2)
+	else if (o == 2)
 		write(1, "sb\n", 3);
 	tmp = (*stack)->content;
 	(*stack)->content = (*stack)->next->content;
@@ -32,25 +31,22 @@ void	swap(t_list **stack, t_list **not_tobeused)
 
 void	ss(t_list **stack_a, t_list **stack_b)
 {
-	if (isempty(*stack_a) || isempty(*stack_b))
-		return ;
-	(*stack_a)->stack = 1;
-	swap(stack_a);
-	(*stack_b)->stack = 2;
-	swap(stack_b);
+	write(1, "ss\n", 3);
+	swap(stack_a, stack_b, -1);
+	swap(stack_b, stack_a, -1);
 	return ;
 }
 
-void	rotate(t_list **stack)
+void	rotate(t_list **stack, int o)
 {
 	t_list	*head;
 	t_list	*tail;
 
 	if (isempty(*stack))
 		return ;
-	if ((*stack)->stack == 1)
+	if (o == 1)
 		write(1, "sa\n", 3);
-	else if ((*stack)->stack == 2)
+	else if (o == 2)
 		write(1, "sb\n", 3);
 	head = *stack;
 	tail = ft_lstlast(*stack);
@@ -61,24 +57,21 @@ void	rotate(t_list **stack)
 
 void	rr(t_list **stack_a, t_list **stack_b)
 {
-	if (isempty(*stack_a) || isempty(*stack_b))
-		return ;
-	(*stack_a)->stack = 1;
-	rotate(stack_a);
-	(*stack_b)->stack = 2;
-	rotate(stack_b);
+	write(1, "rr\n", 3);
+	rotate(stack_a, -1);
+	rotate(stack_b, -1);
 	return ;
 }
 
-void	reverse_rotate(t_list	**stack)
+void	reverse_rotate(t_list **stack, int o)
 {
     t_list  *tail;
 
 	if (isempty(*stack))
 		return ;
-	if ((*stack)->stack == 1)
+	if (o == 1)
 		write(1, "sa\n", 3);
-	else if ((*stack)->stack == 2)
+	else if (o == 2)
 		write(1, "sb\n", 3);
     tail = ft_lstlast(*stack);
     ft_lstadd_front(stack, ft_lstnew(tail->content));
