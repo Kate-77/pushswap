@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:10:39 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/20 04:37:40 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/21 02:59:51 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,5 @@ void	delete_first(t_list **stack);
 int		isempty(t_list *stack);
 void	push(t_list **source, t_list **destination, int o);
 int		lst_size(t_list *lst);
-
+int		duplicate(t_list *stack);
 #endif
