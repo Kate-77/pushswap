@@ -6,7 +6,7 @@
 #    By: kmoutaou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/15 21:32:50 by kmoutaou          #+#    #+#              #
-#    Updated: 2022/04/21 03:06:44 by kmoutaou         ###   ########.fr        #
+#    Updated: 2022/04/23 07:07:52 by kmoutaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC			= cc
 FLAGS		= -Wall -Wextra -Werror
 
 SRCS		= main.c tools/lists.c tools/operations1.c tools/atoi.c \
-			  tools/operations2.c tools/sorting.c
+			  tools/operations2.c tools/sorting.c tools/sorting2.c
 
 OBJS		= $(SRCS:.c=.o)
 

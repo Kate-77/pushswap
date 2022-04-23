@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:10:39 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/23 05:46:19 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/23 08:05:52 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,8 @@ int		lst_size(t_list *lst);
 int		duplicate(t_list *stack);
 int		find_max(t_list *stack);
 void	sort_three(t_list **stack_a, t_list **stack_b);
+void	create_array(t_list *stack);
+void	swap_arr(int *arr, int i, int j);
+int		*sort_arr(t_list *stack);
 
 #endif
