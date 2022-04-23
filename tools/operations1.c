@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 00:11:11 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/20 03:49:04 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/23 02:42:42 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	rotate(t_list **stack, int o)
 	if (isempty(*stack))
 		return ;
 	if (o == 1)
-		write(1, "sa\n", 3);
+		write(1, "ra\n", 3);
 	else if (o == 2)
-		write(1, "sb\n", 3);
+		write(1, "rb\n", 3);
 	head = *stack;
 	tail = ft_lstlast(*stack);
 	tail->next = ft_lstnew((*stack)->content);
@@ -70,9 +70,9 @@ void	reverse_rotate(t_list **stack, int o)
 	if (isempty(*stack))
 		return ;
 	if (o == 1)
-		write(1, "sa\n", 3);
+		write(1, "rra\n", 3);
 	else if (o == 2)
-		write(1, "sb\n", 3);
+		write(1, "rrb\n", 3);
     tail = ft_lstlast(*stack);
     ft_lstadd_front(stack, ft_lstnew(tail->content));
     delete_last(stack);

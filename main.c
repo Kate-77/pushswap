@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:52:16 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/21 02:59:26 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/23 05:48:05 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,12 @@ int	main(int argc, char **argv)
 	{
 		fill_stack(&stack_a, argv);
 		print(stack_a, 1);
-		/*if (lst_size(stack_a) == 3)
-			sort_three(&stack_a);
-		*/
-		//print(stack_b, 2);
+		if (lst_size(stack_a) == 3)
+			sort_three(&stack_a, &stack_b);
+		print(stack_a, 1);
 		//reverse_rotate(&stack_a, 1);
 		//print(stack_a, 1);
-		printf("dup : %d\n",duplicate(stack_a));
+		//printf("dup : %d\n",duplicate(stack_a));
 	}
 	else
 		write(1, "error", 5);
