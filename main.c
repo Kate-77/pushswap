@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:52:16 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/23 08:07:05 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/25 01:39:44 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,12 @@ int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
-	//int		*arr;
-	//int		size;
-	//int		i = 0;
+	int		*arr;
+	int		i = 0;
 
 	stack_a = NULL;
 	stack_b = NULL;
-	//size = lst_size(stack_a);
+	arr = NULL;
 	if (argc > 2)
 	{
 		fill_stack(&stack_a, argv);
@@ -73,13 +72,10 @@ int	main(int argc, char **argv)
 		//if (lst_size(stack_a) == 3)
 		//	sort_three(&stack_a, &stack_b);
 		//print(stack_a, 1);
-		create_array(stack_a);
-		//sort_arr(stack_a);
-		/*while (arr[i])
-		{
-			printf("arr %d\n", arr[i]);
-			i++;
-		}*/
+		arr = create_array(stack_a, &arr);
+		arr = sort_arr(arr, stack_a);
+		while (i < lst_size(stack_a))
+			printf("arr %d\n", arr[i++]);
 		//reverse_rotate(&stack_a, 1);
 		//print(stack_a, 1);
 		//printf("dup : %d\n",duplicate(stack_a));
