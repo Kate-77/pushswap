@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:52:16 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/25 01:39:44 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/26 02:26:24 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,15 @@ int	main(int argc, char **argv)
 		//	sort_three(&stack_a, &stack_b);
 		//print(stack_a, 1);
 		arr = create_array(stack_a, &arr);
-		arr = sort_arr(arr, stack_a);
-		while (i < lst_size(stack_a))
+		printf("size: %d\n", array_size(arr));
+		sort_arr(&arr, stack_a);
+		//while (i < lst_size(stack_a))
+		while (stack_a != NULL)
+		{
 			printf("arr %d\n", arr[i++]);
+			stack_a = stack_a->next;
+		}
+		//sort_five(&stack_a, &stack_b);
 		//reverse_rotate(&stack_a, 1);
 		//print(stack_a, 1);
 		//printf("dup : %d\n",duplicate(stack_a));

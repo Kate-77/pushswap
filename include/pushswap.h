@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:10:39 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/25 02:03:55 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/26 02:25:28 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ int		find_max(t_list *stack);
 void	sort_three(t_list **stack_a, t_list **stack_b);
 int		*create_array(t_list *stack, int **arr);
 void	swap_arr(int **arr, int i, int j);
-int		*sort_arr(int *arr, t_list *stack);
+void	sort_arr(int **arr, t_list *stack);
+void	sort_five(t_list **stack_a, t_list **stack_b);
+int		find_min(t_list *stack);
+int		array_size(int *arr);
 
 #endif
