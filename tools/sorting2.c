@@ -6,37 +6,34 @@
 /*   By: kmoutaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 06:51:05 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/26 02:52:55 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/27 02:11:28 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 #include <stdio.h>
 
-int	*create_array(t_list *stack, int **arr)
+int	*create_array(t_list *stack, int *arr)
 {
-	(void)arr;
-	int	arr1[lst_size(stack)];
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	while (stack != NULL)
 	{
-		arr1[i] = stack->content;
-		printf("here %d\n", arr1[i]);
+		arr[i] = stack->content;
 		stack = stack->next;
 		i++;
 	}
-	*arr = arr1;
-	return (*arr);
+	return (arr);
 }
 
-void	swap_arr(int **arr, int i, int j)
+void	swap_arr(int *arr, int i, int j)
 {
 	int	tmp;
 
-	tmp = *arr[i];
-	*arr[i] = *arr[j];
-	*arr[j] = *arr[i];
+	tmp = arr[i];
+	arr[i] = arr[j];
+	arr[j] = tmp;
 	return ;
 }
 
@@ -50,27 +47,20 @@ int	array_size(int *arr)
 	return (i);
 }
 
-void	sort_arr(int **arr, t_list *stack)
+void	sort_arr(int *arr, t_list *stack)
 {
 	int	i;
 	int	j;
-	int	tmp;
 	(void)stack;
 
 	i = 0;
-	while (*arr[i])
+	while (stack != NULL)
 	{
 		j = i + 1;
-		while (*arr[j])
+		while (stack !=NULL)
 		{
-			if (*arr[j] < *arr[i])
-			{
-			//	swap_arr(&arr, i, j);
-				tmp = *arr[i];
-				*arr[i] = *arr[j];
-				*arr[j] = *arr[i];
-			}
-			//printf("arri : %d arrj : %d\n", *arr[i], *arr[j]);
+			if (arr[j] < arr[i])
+				swap_arr(arr, i, j);
 			j++;
 		}
 		i++;

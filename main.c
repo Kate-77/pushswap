@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:52:16 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/26 02:26:24 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/27 02:03:43 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(int argc, char **argv)
 
 	stack_a = NULL;
 	stack_b = NULL;
-	arr = NULL;
+	arr = (int *)malloc(sizeof(int) * lst_size(stack_a));
 	if (argc > 2)
 	{
 		fill_stack(&stack_a, argv);
@@ -72,14 +72,15 @@ int	main(int argc, char **argv)
 		//if (lst_size(stack_a) == 3)
 		//	sort_three(&stack_a, &stack_b);
 		//print(stack_a, 1);
-		arr = create_array(stack_a, &arr);
-		printf("size: %d\n", array_size(arr));
-		sort_arr(&arr, stack_a);
-		//while (i < lst_size(stack_a))
-		while (stack_a != NULL)
+		arr = create_array(stack_a, arr);
+		sort_arr(arr, stack_a);
+		//printf("size %d\n", lst_size(stack_a));
+		//printf("size: %d\n", array_size(arr));
+		//sort_arr(&arr, stack_a);
+		while (i < lst_size(stack_a))
 		{
-			printf("arr %d\n", arr[i++]);
-			stack_a = stack_a->next;
+			printf("arr %d\n", arr[i]);
+			i++;
 		}
 		//sort_five(&stack_a, &stack_b);
 		//reverse_rotate(&stack_a, 1);
