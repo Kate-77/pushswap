@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:52:16 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/27 02:03:43 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/04/27 07:23:55 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,34 +59,33 @@ int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
-	int		*arr;
-	int		i = 0;
+	t_array	*array;
+	//int		i;
 
 	stack_a = NULL;
 	stack_b = NULL;
-	arr = (int *)malloc(sizeof(int) * lst_size(stack_a));
+	array = (t_array *)malloc(sizeof(t_array));
 	if (argc > 2)
 	{
 		fill_stack(&stack_a, argv);
 		print(stack_a, 1);
-		//if (lst_size(stack_a) == 3)
-		//	sort_three(&stack_a, &stack_b);
+        array->size = lst_size(stack_a);
+	    array->arr = (int *)malloc(sizeof(int) * array->size);
+	    create(array, stack_a);
+	    if (lst_size(stack_a) == 3)
+			sort_three(&stack_a, &stack_b);
+		sort(array, &stack_a, &stack_b);
 		//print(stack_a, 1);
-		arr = create_array(stack_a, arr);
-		sort_arr(arr, stack_a);
-		//printf("size %d\n", lst_size(stack_a));
-		//printf("size: %d\n", array_size(arr));
-		//sort_arr(&arr, stack_a);
-		while (i < lst_size(stack_a))
-		{
-			printf("arr %d\n", arr[i]);
-			i++;
-		}
-		//sort_five(&stack_a, &stack_b);
-		//reverse_rotate(&stack_a, 1);
-		//print(stack_a, 1);
-		//printf("dup : %d\n",duplicate(stack_a));
-	}
+		//print(stack_b, 2);
+		//sort_arr(array);
+	    
+		/*i = 0;
+	    while (i < array->size)
+	    {
+		    printf("%d\n", array->arr[i]);
+		    i++;
+	    }*/
+    }
 	else
 		write(1, "error", 5);
 	return 0;

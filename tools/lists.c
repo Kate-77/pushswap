@@ -51,6 +51,8 @@ t_list	*ft_lstlast(t_list *lst)
 	t_list	*surf;
 
 	surf = lst;
+	if (lst == NULL)
+		return (0);
 	while (surf != NULL)
 	{
 		if (surf -> next == NULL)

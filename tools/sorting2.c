@@ -13,18 +13,67 @@
 #include "../include/pushswap.h"
 #include <stdio.h>
 
-int	*create_array(t_list *stack, int *arr)
+void	create(t_array *array, t_list *stack)
 {
 	int	i;
 
 	i = 0;
-	while (stack != NULL)
+	while (i < array->size)
 	{
-		arr[i] = stack->content;
+		array->arr[i] = stack->content;
+		i++;
 		stack = stack->next;
+	}
+	return ;
+}
+
+void	swap_arr(t_array *array, int i, int j)
+{
+	int	tmp;
+
+	tmp = array->arr[i];
+	array->arr[i] = array->arr[j];
+	array->arr[j] = tmp;
+	return ;
+}
+
+void	sort_arr(t_array *array)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < array->size)
+	{
+		j = i + 1;
+		while (j < array->size)
+		{
+			if (array->arr[j] < array->arr[i])
+				swap_arr(array, i, j);
+			j++;
+		}
 		i++;
 	}
-	return (arr);
+	return ;
+}
+
+/*
+void	create_array(t_list *stack, t_array *array)
+{
+	int	i;
+	t_list *s;
+
+	i = 0;
+	s = stack;
+	while (i < array->size)
+	{
+		printf("here %d\n", stack->content);
+		array->arr[i] = s->content;
+		printf("also here %d\n", array->arr[i]);
+		s = s->next;
+		i++;
+	}
+	return ;
 }
 
 void	swap_arr(int *arr, int i, int j)
@@ -42,22 +91,22 @@ int	array_size(int *arr)
 	int	i;
 
 	i = 1;
-	while (arr[i])
+	while (arr[i] != '\0')
 		i++;
 	return (i);
 }
 
-void	sort_arr(int *arr, t_list *stack)
+void	sort_arr(int *arr, t_list *stack, int size)
 {
 	int	i;
 	int	j;
 	(void)stack;
 
 	i = 0;
-	while (stack != NULL)
+	while (i < size)
 	{
 		j = i + 1;
-		while (stack !=NULL)
+		while (j < size)
 		{
 			if (arr[j] < arr[i])
 				swap_arr(arr, i, j);
@@ -66,7 +115,7 @@ void	sort_arr(int *arr, t_list *stack)
 		i++;
 	}
 	return ;
-}
+}*/
 /*
 int	find_min(t_list *stack)
 {
