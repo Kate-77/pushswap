@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:52:16 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/27 07:23:55 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/16 02:11:28 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 	t_list	*stack_a;
 	t_list	*stack_b;
 	t_array	*array;
-	//int		i;
+	int		i;
 
 	stack_a = NULL;
 	stack_b = NULL;
@@ -74,19 +74,24 @@ int	main(int argc, char **argv)
 	    create(array, stack_a);
 	    if (lst_size(stack_a) == 3)
 			sort_three(&stack_a, &stack_b);
+		sort_arr(array);
 		sort(array, &stack_a, &stack_b);
-		//print(stack_a, 1);
-		//print(stack_b, 2);
-		//sort_arr(array);
-	    
-		/*i = 0;
+		print(stack_a, 1);
+		print(stack_b, 2);
+		i = 0;
 	    while (i < array->size)
 	    {
-		    printf("%d\n", array->arr[i]);
+		    printf("arr %d\n", array->arr[i]);
 		    i++;
-	    }*/
+		}
+		if ((stack_a->content <= array->arr[3] && stack_a->content >= array->arr[1]))
+			push(&stack_a, &stack_b, 1);
+		print(stack_b, 2);
     }
 	else
+	{
 		write(1, "error", 5);
+		exit(0);
+	}
 	return 0;
 }

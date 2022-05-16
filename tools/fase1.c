@@ -5,63 +5,73 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/10 15:04:32 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/27 07:44:52 by kmoutaou         ###   ########.fr       */
+/*   Created: 2022/04/28 02:45:07 by kmoutaou          #+#    #+#             */
+/*   Updated: 2022/05/16 02:32:43 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 #include <stdio.h>
 
+void	initialize(t_coors **coors, t_list **stack_a, t_list **stack_b)
+{
+	(*coors)->size_a = lst_size(*stack_a);
+	(*coors)->size_b = lst_size(*stack_b);
+	if ((*coors)->size_a <= 10)
+		(*coors)->offset = 2;
+	else if ((*coors)->size_a < 150)
+		(*coors)->offset = 5;
+	else if ((*coors)->size_a > 150)
+		(*coors)->offset = 15;
+	(*coors)->middle = (*coors)->size_a / 2;
+	(*coors)->end = (*coors)->middle + (*coors)->offset;
+	if ((*coors)->end > (*coors)->size_a)
+		(*coors)->end = (*coors)->size_a;
+	(*coors)->start = (*coors)->middle - (*coors)->offset;
+	if ((*coors)->start < 0)
+		(*coors)->start = 0;	
+	(*coors)->range = (*coors)->end - (*coors)->start;
+	return ;
+}
+
 void    sort(t_array *array, t_list **stack_a, t_list **stack_b)
 {
 	t_coors *coors;
-	int     range;
-	t_list	*head;
-	int	i = 0;
+	(void)array;
+
 	coors = (t_coors *)malloc(sizeof(t_coors));
-	coors->size_a = lst_size(*stack_a);
-	printf("sizeA : %d\n", coors->size_a);
-	coors->size_b = lst_size(*stack_b);
-	printf("sizeB : %d\n", coors->size_b);
-	if (coors->size_a <= 10)
-		coors->offset = 2;
-	else if (coors->size_a < 150)
-		coors->offset = 8;
-	else if (coors->size_a > 150)
-		coors->offset = 18;
-	printf("offset : %d\n", coors->offset);
-	coors->middle = coors->size_a / 2;
-	printf("middle : %d\n", coors->middle);
-	coors->end = coors->middle + coors->offset;
-	if (coors->end > coors->size_a)
-		coors->end = coors->size_a;
-	printf("end : %d\n", coors->end);
-	coors->start = coors->middle - coors->offset;
-	if (coors->start < 0)
-		coors->start = 0;	
-	printf("start : %d\n", coors->start);
-	range = coors->end - coors->start;
-	while (lst_size(*stack_a) != 0)
+	initialize(&coors, stack_a, stack_b);
+	while (lst_size(*stack_a))
 	{
-		while(lst_size(*stack_b) <= range)
+		while(lst_size(*stack_b) < coors->range  && lst_size(*stack_a))
 		{
-			head = *stack_a;
-			if ((head->content <= array->arr[coors->end-1]) && (head->content >= array->arr[coors->start]))
+			printf("start %d\n array-start %d\n", coors->start, array->arr[coors->start]);
+			printf("end %d\n array-end %d\n", coors->end, array->arr[coors->end]);
+			printf("range %d\n", coors->range);
+			printf("stack_a %d\n", (*stack_a)->content);
+			if (((*stack_a)->content >= array->arr[coors->start])
+					&& ((*stack_a)->content < array->arr[coors->end]))
+			{
 				push(stack_a, stack_b, 1);
+				if (lst_size(*stack_b) > 1 && (*stack_b)->content > array->arr[coors->middle])
+				{
+					printf("HEEEEEEEEEEEERE");	
+					rotate(stack_b, 2);
+				}
+			}
 			else
 				rotate(stack_a, 1);
-			printf("sa : %d\n", head->content);
-			printf("a start : %d\n", array->arr[coors->end-1]);
-			printf("sfinal : %d\n", array->arr[coors->start]);
-			printf("inside sizeB : %d\n", coors->size_b);
-			i++;
 		}
+		exit(0);
 		coors->start = coors->start - coors->offset;
 		if (coors->start < 0)
 			coors->start = 0;	
 		coors->end = coors->end + coors->offset;
 		if (coors->end > coors->size_a)
 			coors->end = coors->size_a;
+		if ((*stack_a)->next == NULL)
+			push(stack_a, stack_b, 1);
 	}
+	printf("here");
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:10:39 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/27 07:24:16 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/14 18:59:58 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct coors
 	int	end;
 	int	start;
 	int	offset;
+	int	range;
 } t_coors;
 
 t_list	*ft_lstnew(int content);
