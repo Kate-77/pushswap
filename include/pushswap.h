@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:10:39 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/14 18:59:58 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/17 06:37:43 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,15 @@ void	push(t_list **source, t_list **destination, int o);
 int		lst_size(t_list *lst);
 int		duplicate(t_list *stack);
 int		find_max(t_list *stack);
-void	sort_three(t_list **stack_a, t_list **stack_b);
-//void	create_array(t_list *stack, t_array *arr);
-//void	swap_arr(int *arr, int i, int j);
-//void	sort_arr(int *arr, t_list *stack, int size);
-void	sort_five(t_list **stack_a, t_list **stack_b);
 int		find_min(t_list *stack);
+void	sort_three(t_list **stack_a, t_list **stack_b);
+void	sort_four(t_list **stack_a, t_list **stack_b);
+void	sort_five(t_list **stack_a, t_list **stack_b);
 //int		array_size(int *arr);
 void	sort_arr(t_array *array);
 void	swap_arr(t_array *array, int i, int j);
 void	create(t_array *array, t_list *stack);
 void    sort(t_array *array, t_list **stack_a, t_list **stack_b);
+void	print(t_list *stack, int s);
+int		check_b(t_array *array, t_list *stack_b);
 #endif

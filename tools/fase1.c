@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 02:45:07 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/16 02:32:43 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/17 09:42:16 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,45 @@ void	initialize(t_coors **coors, t_list **stack_a, t_list **stack_b)
 	return ;
 }
 
+int	check_b(t_array *array, t_list *stack_b)
+{
+	while (stack_b != NULL)
+	{
+		if (stack_b->content == array->arr[array->size - 1])
+			return (1);
+		stack_b = stack_b->next;
+	}
+	return (0);
+}
+
+void	sort2(t_array *array, t_list **stack_a, t_list **stack_b)
+{
+	t_list	*head;
+
+	head = *stack_b;
+	while ((*stack_b) != NULL)
+	{
+		if (!(check_b(array, *stack_b)))
+			reverse_rotate(stack_a, 1);
+		else
+		{
+			if ((*stack_b)->content == array->arr[array->size - 1])
+				push(stack_b, stack_a, 2);
+			else
+			{
+				if (lst_size(*stack_a) == 0 || (*stack_b)->content > (*stack_a)->content)
+				{
+					push(stack_b, stack_a, 2);
+					rotate(stack_a, 1);
+				}
+				else
+					rotate(stack_b, 2);
+			}
+		}
+	}
+	return ;
+}
+
 void    sort(t_array *array, t_list **stack_a, t_list **stack_b)
 {
 	t_coors *coors;
@@ -45,33 +84,28 @@ void    sort(t_array *array, t_list **stack_a, t_list **stack_b)
 	{
 		while(lst_size(*stack_b) < coors->range  && lst_size(*stack_a))
 		{
-			printf("start %d\n array-start %d\n", coors->start, array->arr[coors->start]);
-			printf("end %d\n array-end %d\n", coors->end, array->arr[coors->end]);
-			printf("range %d\n", coors->range);
-			printf("stack_a %d\n", (*stack_a)->content);
 			if (((*stack_a)->content >= array->arr[coors->start])
 					&& ((*stack_a)->content < array->arr[coors->end]))
 			{
 				push(stack_a, stack_b, 1);
-				if (lst_size(*stack_b) > 1 && (*stack_b)->content > array->arr[coors->middle])
-				{
-					printf("HEEEEEEEEEEEERE");	
+				if ((*stack_b)->content > array->arr[coors->middle] && lst_size(*stack_b) > 1)
 					rotate(stack_b, 2);
-				}
 			}
 			else
 				rotate(stack_a, 1);
 		}
-		exit(0);
 		coors->start = coors->start - coors->offset;
 		if (coors->start < 0)
 			coors->start = 0;	
 		coors->end = coors->end + coors->offset;
 		if (coors->end > coors->size_a)
 			coors->end = coors->size_a;
-		if ((*stack_a)->next == NULL)
-			push(stack_a, stack_b, 1);
+	/*	if ((*stack_a)->next == NULL)
+			push(stack_a, stack_b, 1);*/
+		coors->range = coors->end - coors->start;
 	}
-	printf("here");
+	//sort2(array, stack_a, stack_b);
 	return ;
 }
+
+

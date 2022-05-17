@@ -6,7 +6,7 @@
 /*   By: kmoutaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 04:38:27 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/23 05:49:57 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/17 09:29:33 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,20 @@ int	find_max(t_list *stack)
 	return (max);
 }
 
+int	find_min(t_list *stack)
+{
+	int	min;
+
+	min = stack->content;
+	while (stack->next != NULL)
+	{
+		if (min > stack->next->content)
+			min = stack->next->content;
+		stack = stack->next;
+	}
+	return (min);
+}
+
 void	sort_three(t_list **stack_a, t_list **stack_b)
 {
 	int	max;
@@ -59,5 +73,40 @@ void	sort_three(t_list **stack_a, t_list **stack_b)
 	}
 	if ((*stack_a)->content > (*stack_a)->next->content)
 		swap(stack_a, stack_b, 1);
+	return ;
+}
+
+void	sort_four(t_list **stack_a, t_list **stack_b)
+{
+	int	min;
+
+	min = find_min(*stack_a);
+	while (lst_size(*stack_a) > 3)
+	{
+		if (min == (*stack_a)->content)
+			push(stack_a, stack_b, 1);
+		else
+			rotate(stack_a, 1);
+	}
+	sort_three(stack_a, stack_b);
+	push(stack_b, stack_a, 2);
+	return ;
+}
+
+
+void	sort_five(t_list **stack_a, t_list **stack_b)
+{
+	int	min;
+
+	min = find_min(*stack_a);
+	while (lst_size(*stack_a) > 4)
+	{
+		if (min == (*stack_a)->content)
+			push(stack_a, stack_b, 1);
+		else
+			rotate(stack_a, 1);
+	}
+	sort_four(stack_a, stack_b);
+	push(stack_b, stack_a, 2);
 	return ;
 }

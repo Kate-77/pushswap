@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 00:11:15 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/04/20 02:07:15 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/17 05:30:40 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_putnbr(int n)
 
 int	isempty(t_list *stack)
 {
-	if (stack->next == NULL)
+	if (stack == NULL)
 		return (1);
 	else
 		return (0);
