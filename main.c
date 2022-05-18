@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:52:16 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/17 09:33:56 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/18 06:40:59 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int argc, char **argv)
 	t_list	*stack_a;
 	t_list	*stack_b;
 	t_array	*array;
-	//int		i;
+	//int		i = 0;
 
 	stack_a = NULL;
 	stack_b = NULL;
@@ -72,34 +72,29 @@ int	main(int argc, char **argv)
 	{
 		fill_stack(&stack_a, argv);
 		print(stack_a, 1);
-        array->size = lst_size(stack_a);
-	    array->arr = (int *)malloc(sizeof(int) * array->size);
-	    create(array, stack_a);
-	    if (lst_size(stack_a) == 3)
+		array->size = lst_size(stack_a);
+		array->arr = (int *)malloc(sizeof(int) * array->size);
+		create(array, stack_a);
+		if (lst_size(stack_a) == 3)
 			sort_three(&stack_a, &stack_b);
 		else if (lst_size(stack_a) == 4)
 			sort_four(&stack_a, &stack_b);
 		else if (lst_size(stack_a) == 5)
 			sort_five(&stack_a, &stack_b);
-		/*push(&stack_a, &stack_b, 1);
-		print(stack_b, 2);
+		else
+		{
+			sort_arr(array);
+			sort(array, &stack_a, &stack_b);
+		}
 		print(stack_a, 1);
-		printf("AFTER\n");
-		push(&stack_b, &stack_a, 2);
 		print(stack_b, 2);
-		print(stack_a, 1);*/
-		sort_arr(array);
-		sort(array, &stack_a, &stack_b);
-		print(stack_a, 1);
-		//print(stack_a, 1);
-		//print(stack_b, 2);
 		/*i = 0;
-	    while (i < array->size)
-	    {
-		    printf("arr %d\n", array->arr[i]);
-		    i++;
-		}*/
-    }
+		  while (i < array->size)
+		  {
+		  printf("arr %d\n", array->arr[i]);
+		  i++;
+		  }*/
+	}
 	else
 	{
 		write(1, "error", 5);

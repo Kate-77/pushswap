@@ -6,30 +6,12 @@
 /*   By: kmoutaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 04:38:27 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/17 09:29:33 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/17 11:01:31 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 #include <stdio.h>
-
-int	duplicate(t_list *stack)
-{
-	t_list	*head;
-
-	while (stack != NULL)
-	{
-		head = stack->next;
-		while (head != NULL)
-		{
-			if (stack->content == head->content)
-				return (1);
-			head = head->next;
-		}
-		stack = stack->next;
-	}
-	return (0);
-}
 
 int	find_max(t_list *stack)
 {
