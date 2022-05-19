@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:52:16 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/18 06:40:59 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/19 05:53:10 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,7 @@ void	push(t_list **source, t_list **destination, int o)
 	else if (o == 2)
 		write(1, "pb\n", 3);
 	if (isempty(*source))
-	{
-		printf("empty\n");
 		return ;
-	}
 	ft_lstadd_front(destination, ft_lstnew((*source)->content));
 	delete_first(source);
 	return ;
@@ -88,6 +85,7 @@ int	main(int argc, char **argv)
 		}
 		print(stack_a, 1);
 		print(stack_b, 2);
+		//printf("last one %d\n", ft_lstlast(stack_a)->content);
 		/*i = 0;
 		  while (i < array->size)
 		  {

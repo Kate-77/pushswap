@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 02:45:07 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/18 06:55:23 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/19 05:53:07 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,21 @@ void	initialize(t_coors **coors, t_list **stack_a, t_list **stack_b)
 	return ;
 }
 
+int	get_maxindex(t_list *stack, int max)
+{
+	int	i;
+
+	i = 0;
+	while (stack != NULL)
+	{
+		if (stack->content == max)
+			return (i);
+		stack = stack->next;
+		i++;
+	}
+	return (i);
+}
+
 int	check_b(t_array *array, t_list *stack_b)
 {
 	int	max;
@@ -48,49 +63,61 @@ int	check_b(t_array *array, t_list *stack_b)
 	return (0);
 }
 
-void	sort2(t_array *array, t_coors *coors, t_list **stack_a, t_list **stack_b)
+void	sort2(t_array *array, t_list **stack_a, t_list **stack_b)
 {
 	int	indicator;
-	int	max;
 	int	i;
 
 	indicator = 0;
-	max = array->arr[array->size - 1];
-	i = 2;
+	i = array->size - 1;
 	while (lst_size(*stack_b) || indicator != 0)
 	{
-		if (!(check_b(array, *stack_b)))
+		if (check_b(array, *stack_b))
 		{
-			reverse_rotate(stack_a, 1);
-			//if (max > coors->middle)
-			//	reverse_rotate(stack_b, 2);
-			//else
-			//	rotate(stack_b, 2);
-		}
-		else
-		{
-			if ((*stack_b)->content == max)
+			printf("one\n");
+			if ((*stack_b)->content == array->arr[i])
 			{
+				printf("one 1\n");
 				push(stack_b, stack_a, 2);
-				max = array->arr[array->size - i];
-				i++;
+				i--;
 			}
-			else
+			else if (lst_size(*stack_a))
 			{
-				if ((*stack_b)->content > ft_lstlast(*stack_a)->content || indicator == 0)
+				printf("one 2\n");
+				if (indicator == 0 || (*stack_b)->content > ft_lstlast(*stack_a)->content)
 				{
 					push(stack_b, stack_a, 2);
 					rotate(stack_a, 1);
 					indicator++;
 				}
+			}
+			else if (indicator == 0)
+			{
+				printf("one 3\n");
+				push(stack_b, stack_a, 2);
+				rotate(stack_a, 1);
+				indicator++;
+			}
+			else
+			{
+				if (get_maxindex(*stack_b, array->arr[i]) < lst_size(*stack_b) / 2)
+				{
+					rotate(stack_b, 2);
+					printf("one 4\n");
+				}
 				else
 				{
-					if (ft_lstlast(*stack_a)->content > coors->middle)
-						reverse_rotate(stack_b, 2);
-					else
-						rotate(stack_b, 2);
+					reverse_rotate(stack_b, 2);
+					printf("one 5\n");
 				}
 			}
+		}
+		else if (indicator > 0 && lst_size(*stack_a) > 1)
+		{
+			printf("two\n");
+			reverse_rotate(stack_a, 1);
+			//indicator--;
+			//i--;
 		}
 	}
 	return ;
@@ -99,7 +126,6 @@ void	sort2(t_array *array, t_coors *coors, t_list **stack_a, t_list **stack_b)
 void    sort(t_array *array, t_list **stack_a, t_list **stack_b)
 {
 	t_coors *coors;
-	(void)array;
 
 	coors = (t_coors *)malloc(sizeof(t_coors));
 	initialize(&coors, stack_a, stack_b);
@@ -125,7 +151,7 @@ void    sort(t_array *array, t_list **stack_a, t_list **stack_b)
 			coors->end = coors->size_a;
 		coors->range = coors->end - coors->start;
 	}
-	sort2(array, coors, stack_a, stack_b);
+	sort2(array, stack_a, stack_b);
 	return ;
 }
 

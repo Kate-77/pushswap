@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 20:30:25 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/18 06:39:29 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/19 04:56:12 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,15 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	t_list	*surf;
-
-	surf = lst;
 	if (lst == NULL)
-		return (0);
-	while (surf != NULL)
+		return (NULL);
+	while (lst != NULL)
 	{
-		if (surf->next == NULL)
-			return (surf);
-		surf = surf->next;
+		if (lst->next == NULL)
+			return (lst);
+		lst = lst->next;
 	}
-	return (surf);
+	return (lst);
 }
 
 int	lst_size(t_list *lst)
