@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:52:16 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/20 02:36:38 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/20 05:49:49 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	fill_stack(t_list **stack, char **argv)
 void	push(t_list **source, t_list **destination, int o)
 {
 	if (o == 1)
-		write(1, "pa\n", 3);
-	else if (o == 2)
 		write(1, "pb\n", 3);
+	else if (o == 2)
+		write(1, "pa\n", 3);
 	if (isempty(*source))
 		return ;
 	ft_lstadd_front(destination, ft_lstnew((*source)->content));
@@ -68,7 +68,7 @@ int	main(int argc, char **argv)
 	if (argc > 2)
 	{
 		fill_stack(&stack_a, argv);
-		print(stack_a, 1);
+		//print(stack_a, 1);
 		array->size = lst_size(stack_a);
 		array->arr = (int *)malloc(sizeof(int) * array->size);
 		create(array, stack_a);
@@ -83,8 +83,8 @@ int	main(int argc, char **argv)
 			sort_arr(array);
 			sort(array, &stack_a, &stack_b);
 		}
-		print(stack_a, 1);
-		print(stack_b, 2);
+		//print(stack_a, 1);
+		//print(stack_b, 2);
 		//printf("last one %d\n", ft_lstlast(stack_a)->content);
 		/*i = 0;
 		  while (i < array->size)

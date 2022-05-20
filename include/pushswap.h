@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:10:39 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/19 02:16:14 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/20 05:31:10 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	swap_arr(t_array *array, int i, int j);
 void	create(t_array *array, t_list *stack);
 void    sort(t_array *array, t_list **stack_a, t_list **stack_b);
 void	print(t_list *stack, int s);
-int		check_b(t_array *array, t_list *stack_b);
+int		check_b(t_array *array, t_list *stack_b, int i);
 int		findmax_arr(t_array *array);
 int		get_maxindex(t_list *stack, int max);
 

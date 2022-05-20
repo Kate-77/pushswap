@@ -6,7 +6,7 @@
 /*   By: kmoutaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 02:27:25 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/20 03:34:44 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/20 05:43:48 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ int	get_maxindex(t_list *stack, int max)
 	return (i);
 }
 
-int	check_b(t_array *array, t_list *stack_b)
+int	check_b(t_array *array, t_list *stack_b, int i)
 {
 	int	max;
 
-	max = findmax_arr(array);
+	max = array->arr[i];
 	while (stack_b != NULL)
 	{
 		if (stack_b->content == max)
@@ -79,50 +79,41 @@ void	sort2(t_array *array, t_list **stack_a, t_list **stack_b)
 {
 	int	indicator;
 	int	i;
+	int pos;
+	t_list	*s;
 
 	indicator = 0;
-	i = 1;
+	i = array->size - 1;
+	s = *stack_b;
 	while (lst_size(*stack_b) || indicator != 0)
 	{
-		printf("size b : %d\n", lst_size(*stack_b));
-		printf("size a : %d\n", lst_size(*stack_a));
-		printf("down  : %d\n", indicator);
-		printf("i : %d\n", i);
-		if (check_b(array, *stack_b))
+		if (check_b(array, *stack_b, i))
 		{
-			if ((*stack_b)->content == array->arr[array->size - i])
+			if ((*stack_b)->content == array->arr[i])
 			{
-				printf("one 1\n");
 				push(stack_b, stack_a, 2);
-				i++;
+				i--;
 			}
-			else if (indicator == 0 || ((*stack_b) && (*stack_b)->content > ft_lstlast(*stack_a)->content))
+			else if(*stack_b && (indicator == 0 || ((*stack_a) && (*stack_b)->content > ft_lstlast(*stack_a)->content)))
 			{
-				printf("one 2\n");
 				push(stack_b, stack_a, 2);
 				rotate(stack_a, 1);
 				indicator++;
 			}
 			else
 			{
-				if (get_maxindex(*stack_b, array->arr[array->size - i]) < lst_size(*stack_b) / 2)
-				{
+				pos = get_maxindex(*stack_b, array->arr[i]);
+				if (pos < lst_size(*stack_b) / 2)
 					rotate(stack_b, 2);
-					printf("one 4\n");
-				}
 				else
-				{
 					reverse_rotate(stack_b, 2);
-					printf("one 5\n");
-				}
 			}
 		}
 		else if (indicator > 0 && lst_size(*stack_a) > 1)
 		{
-			printf("two\n");
 			reverse_rotate(stack_a, 1);
 			indicator--;
-			i++;
+			i--;
 		}
 	}
 	return ;
@@ -159,5 +150,3 @@ void    sort(t_array *array, t_list **stack_a, t_list **stack_b)
 	sort2(array, stack_a, stack_b);
 	return ;
 }
-
-
