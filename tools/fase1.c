@@ -3,10 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   fase1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: kmoutaou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/20 02:27:25 by kmoutaou          #+#    #+#             */
+/*   Updated: 2022/05/20 03:34:44 by kmoutaou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fase1.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 02:45:07 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/19 05:53:07 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/20 02:26:59 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,38 +81,31 @@ void	sort2(t_array *array, t_list **stack_a, t_list **stack_b)
 	int	i;
 
 	indicator = 0;
-	i = array->size - 1;
+	i = 1;
 	while (lst_size(*stack_b) || indicator != 0)
 	{
+		printf("size b : %d\n", lst_size(*stack_b));
+		printf("size a : %d\n", lst_size(*stack_a));
+		printf("down  : %d\n", indicator);
+		printf("i : %d\n", i);
 		if (check_b(array, *stack_b))
 		{
-			printf("one\n");
-			if ((*stack_b)->content == array->arr[i])
+			if ((*stack_b)->content == array->arr[array->size - i])
 			{
 				printf("one 1\n");
 				push(stack_b, stack_a, 2);
-				i--;
+				i++;
 			}
-			else if (lst_size(*stack_a))
+			else if (indicator == 0 || ((*stack_b) && (*stack_b)->content > ft_lstlast(*stack_a)->content))
 			{
 				printf("one 2\n");
-				if (indicator == 0 || (*stack_b)->content > ft_lstlast(*stack_a)->content)
-				{
-					push(stack_b, stack_a, 2);
-					rotate(stack_a, 1);
-					indicator++;
-				}
-			}
-			else if (indicator == 0)
-			{
-				printf("one 3\n");
 				push(stack_b, stack_a, 2);
 				rotate(stack_a, 1);
 				indicator++;
 			}
 			else
 			{
-				if (get_maxindex(*stack_b, array->arr[i]) < lst_size(*stack_b) / 2)
+				if (get_maxindex(*stack_b, array->arr[array->size - i]) < lst_size(*stack_b) / 2)
 				{
 					rotate(stack_b, 2);
 					printf("one 4\n");
@@ -116,8 +121,8 @@ void	sort2(t_array *array, t_list **stack_a, t_list **stack_b)
 		{
 			printf("two\n");
 			reverse_rotate(stack_a, 1);
-			//indicator--;
-			//i--;
+			indicator--;
+			i++;
 		}
 	}
 	return ;
