@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:10:39 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/20 05:31:10 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/23 01:31:13 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@
 
 typedef struct s_list
 {
-	int content;
+	int				content;
 	struct s_list	*next;
 }	t_list;
 
-typedef	struct array
+typedef struct array
 {
 	int	*arr;
 	int	size;
-} t_array;
+}	t_array;
 
 typedef struct coors
 {
@@ -37,7 +37,7 @@ typedef struct coors
 	int	start;
 	int	offset;
 	int	range;
-} t_coors;
+}	t_coors;
 
 t_list	*ft_lstnew(int content);
 t_list	*ft_lstlast(t_list *lst);
@@ -45,6 +45,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_putnbr(int n);
 int		ft_atoi(const char *str);
+int		ft_isdigit(int c);
 void	swap(t_list **stack, t_list **not_tobeused, int o);
 void	ss(t_list **stack_a, t_list **stack_b);
 void	rotate(t_list **stack, int o);
@@ -63,14 +64,17 @@ int		find_min(t_list *stack);
 void	sort_three(t_list **stack_a, t_list **stack_b);
 void	sort_four(t_list **stack_a, t_list **stack_b);
 void	sort_five(t_list **stack_a, t_list **stack_b);
-//int		array_size(int *arr);
 void	sort_arr(t_array *array);
 void	swap_arr(t_array *array, int i, int j);
 void	create(t_array *array, t_list *stack);
-void    sort(t_array *array, t_list **stack_a, t_list **stack_b);
+void	sort(t_array *array, t_list **stack_a, t_list **stack_b);
 void	print(t_list *stack, int s);
 int		check_b(t_array *array, t_list *stack_b, int i);
-int		findmax_arr(t_array *array);
 int		get_maxindex(t_list *stack, int max);
+int		check_args(int argc, char **argv);
+int		isduplicate(int argc, char **argv);
+void	initialize(t_coors **coors, t_list **stack_a, t_list **stack_b);
+int		get_maxindex(t_list *stack, int max);
+int		check_b(t_array *array, t_list *stack_b, int i);
 
 #endif

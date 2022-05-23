@@ -6,12 +6,11 @@
 /*   By: kmoutaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 04:38:27 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/17 11:01:31 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/21 01:27:25 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
-#include <stdio.h>
 
 int	find_max(t_list *stack)
 {
@@ -74,7 +73,6 @@ void	sort_four(t_list **stack_a, t_list **stack_b)
 	push(stack_b, stack_a, 2);
 	return ;
 }
-
 
 void	sort_five(t_list **stack_a, t_list **stack_b)
 {

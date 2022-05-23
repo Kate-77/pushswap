@@ -6,28 +6,11 @@
 /*   By: kmoutaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 06:51:05 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/18 06:11:00 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/21 01:27:43 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
-#include <stdio.h>
-
-int	findmax_arr(t_array *array)
-{
-	int	max;
-	int	i;
-
-	max = array->arr[0];
-	i = 1;
-	while (i < array->size)
-	{
-		if (max < array->arr[i])
-			max = array->arr[i];
-		i++;
-	}
-	return (max);
-}
 
 void	create(t_array *array, t_list *stack)
 {

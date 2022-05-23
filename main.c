@@ -6,12 +6,11 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 13:52:16 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/20 05:49:49 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/23 02:31:43 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/pushswap.h"
-#include <stdio.h>
 
 void	print(t_list *stack, int s)
 {
@@ -42,16 +41,29 @@ void	fill_stack(t_list **stack, char **argv)
 	return ;
 }
 
-void	push(t_list **source, t_list **destination, int o)
+void	sorting(t_list **stack_a, t_list **stack_b, t_array *array)
 {
-	if (o == 1)
-		write(1, "pb\n", 3);
-	else if (o == 2)
-		write(1, "pa\n", 3);
-	if (isempty(*source))
-		return ;
-	ft_lstadd_front(destination, ft_lstnew((*source)->content));
-	delete_first(source);
+	if (lst_size(*stack_a) == 3)
+		sort_three(stack_a, stack_b);
+	else if (lst_size(*stack_a) == 4)
+		sort_four(stack_a, stack_b);
+	else if (lst_size(*stack_a) == 5)
+		sort_five(stack_a, stack_b);
+	else
+	{
+		sort_arr(array);
+		sort(array, stack_a, stack_b);
+	}
+	return ;
+}
+
+void	check_error(t_list *stack)
+{
+	if (!(duplicate(stack)))
+	{
+		write(1, "Duplicated number alert!\n", 25);
+		exit(0);
+	}
 	return ;
 }
 
@@ -60,43 +72,25 @@ int	main(int argc, char **argv)
 	t_list	*stack_a;
 	t_list	*stack_b;
 	t_array	*array;
-	//int		i = 0;
 
 	stack_a = NULL;
 	stack_b = NULL;
 	array = (t_array *)malloc(sizeof(t_array));
-	if (argc > 2)
+	if (argc > 2 && check_args(argc, argv) == 1)
 	{
 		fill_stack(&stack_a, argv);
-		//print(stack_a, 1);
+		check_error(stack_a);
 		array->size = lst_size(stack_a);
 		array->arr = (int *)malloc(sizeof(int) * array->size);
 		create(array, stack_a);
-		if (lst_size(stack_a) == 3)
-			sort_three(&stack_a, &stack_b);
-		else if (lst_size(stack_a) == 4)
-			sort_four(&stack_a, &stack_b);
-		else if (lst_size(stack_a) == 5)
-			sort_five(&stack_a, &stack_b);
-		else
-		{
-			sort_arr(array);
-			sort(array, &stack_a, &stack_b);
-		}
-		//print(stack_a, 1);
-		//print(stack_b, 2);
-		//printf("last one %d\n", ft_lstlast(stack_a)->content);
-		/*i = 0;
-		  while (i < array->size)
-		  {
-		  printf("arr %d\n", array->arr[i]);
-		  i++;
-		  }*/
+		sorting(&stack_a, &stack_b, array);
+		print(stack_a, 1);
 	}
 	else
 	{
-		write(1, "error", 5);
+		write(1, "error\n", 6);
 		exit(0);
 	}
-	return 0;
+	free(array);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 00:11:11 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/20 05:44:31 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/20 22:58:26 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	swap(t_list **stack, t_list **not_tobeused, int o)
 {
 	int	tmp;
-	(void)not_tobeused;
 
+	(void)not_tobeused;
 	if (isempty(*stack))
 		return ;
 	if (o == 1)
@@ -65,7 +65,7 @@ void	rr(t_list **stack_a, t_list **stack_b)
 
 void	reverse_rotate(t_list **stack, int o)
 {
-    t_list  *tail;
+	t_list	*tail;
 
 	if (isempty(*stack))
 		return ;
@@ -73,8 +73,8 @@ void	reverse_rotate(t_list **stack, int o)
 		write(1, "rra\n", 4);
 	else if (o == 2)
 		write(1, "rrb\n", 4);
-    tail = ft_lstlast(*stack);
-    ft_lstadd_front(stack, ft_lstnew(tail->content));
-    delete_last(stack);
-    return ;
+	tail = ft_lstlast(*stack);
+	ft_lstadd_front(stack, ft_lstnew(tail->content));
+	delete_last(stack);
+	return ;
 }

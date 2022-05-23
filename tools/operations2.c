@@ -6,11 +6,19 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 00:11:15 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/17 05:30:40 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/21 00:53:12 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
+
+void	rrr(t_list **stack_a, t_list **stack_b)
+{
+	write(1, "rrr\n", 4);
+	reverse_rotate(stack_a, -1);
+	reverse_rotate(stack_b, -1);
+	return ;
+}
 
 void	ft_putnbr(int n)
 {
@@ -61,13 +69,5 @@ void	delete_last(t_list **stack)
 void	delete_first(t_list **stack)
 {
 	*stack = (*stack)->next;
-	return ;
-}
-
-void	rrr(t_list **stack_a, t_list **stack_b)
-{
-	write(1, "rrr\n", 4);
-	reverse_rotate(stack_a, -1);
-	reverse_rotate(stack_b, -1);
 	return ;
 }
