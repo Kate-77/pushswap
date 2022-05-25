@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   operations3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmoutaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:03:00 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/25 05:25:26 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/25 02:59:44 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pushswap.h"
+#include "../include/checker.h"
 
 void	fill_stack(t_list **stack, char **argv)
 {
@@ -25,12 +25,8 @@ void	fill_stack(t_list **stack, char **argv)
 	return ;
 }
 
-void	push(t_list **source, t_list **destination, int o)
+void	push_c(t_list **source, t_list **destination)
 {
-	if (o == 1)
-		write(1, "pb\n", 3);
-	else if (o == 2)
-		write(1, "pa\n", 3);
 	if (isempty(*source))
 		return ;
 	ft_lstadd_front(destination, ft_lstnew((*source)->content));
@@ -75,18 +71,4 @@ int	check_args(int argc, char **argv)
 		i++;
 	}
 	return (1);
-}
-
-int	find_max(t_list *stack)
-{
-	int	max;
-
-	max = stack->content;
-	while (stack->next != NULL)
-	{
-		if (max < stack->next->content)
-			max = stack->next->content;
-		stack = stack->next;
-	}
-	return (max);
 }

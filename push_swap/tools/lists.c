@@ -6,7 +6,7 @@
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 20:30:25 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/24 04:24:03 by kmoutaou         ###   ########.fr       */
+/*   Updated: 2022/05/24 22:58:09 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ t_list	*ft_lstnew(int content)
 
 void	ft_lstadd_front(t_list **lst, t_list *new_l)
 {
-	new -> next = *lst;
-	*lst = new;
+	new_l -> next = *lst;
+	*lst = new_l;
 }
 
 void	ft_lstadd_back(t_list **lst, t_list *new_l)
@@ -35,13 +35,13 @@ void	ft_lstadd_back(t_list **lst, t_list *new_l)
 	t_list	*head;
 
 	if (*lst == NULL)
-		*lst = new;
+		*lst = new_l;
 	else
 	{
 		head = *lst;
 		while (head -> next != NULL)
 			head = head -> next;
-		head -> next = new;
+		head -> next = new_l;
 	}
 	return ;
 }

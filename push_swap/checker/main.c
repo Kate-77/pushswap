@@ -5,42 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmoutaou <kmoutaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/10 13:52:16 by kmoutaou          #+#    #+#             */
-/*   Updated: 2022/05/25 00:42:20 by kmoutaou         ###   ########.fr       */
+/*   Created: 2022/05/23 23:11:00 by kmoutaou          #+#    #+#             */
+/*   Updated: 2022/05/25 05:11:12 by kmoutaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/pushswap.h"
+#include "include/checker.h"
 
-void	print(t_list *stack, int s)
+int	stack_sorted(t_list *stack)
 {
-	if (s == 1)
-		write(1, "stack a\n", 8);
-	else if (s == 2)
-		write(1, "stack b\n", 8);
-	write(1, "==\n", 3);
-	while (stack != NULL)
+	while (stack->next != NULL)
 	{
-		ft_putnbr(stack->content);
-		write(1, "\n", 1);
+		if (stack->content > stack->next->content)
+			return (0);
 		stack = stack->next;
 	}
-	return ;
+	return (1);
 }
 
-void	sorting(t_list **stack_a, t_list **stack_b, t_array *array)
+void	result(t_list *stack_a, t_list *stack_b)
 {
-	if (lst_size(*stack_a) == 3)
-		sort_three(stack_a, stack_b);
-	else if (lst_size(*stack_a) == 4)
-		sort_four(stack_a, stack_b);
-	else if (lst_size(*stack_a) == 5)
-		sort_five(stack_a, stack_b);
+	if (!stack_sorted(stack_a) || !(isempty(stack_b)))
+		write(1, "KO\n", 3);
 	else
-	{
-		sort_arr(array);
-		sort(array, stack_a, stack_b);
-	}
+		write(1, "OK\n", 3);
 	return ;
 }
 
@@ -58,25 +46,27 @@ int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
-	t_array	*array;
+	char	*instruction;
 
 	stack_a = NULL;
 	stack_b = NULL;
-	array = (t_array *)malloc(sizeof(t_array));
 	if (argc > 2 && check_args(argc, argv) == 1)
 	{
 		fill_stack(&stack_a, argv);
 		check_error(stack_a);
-		array->size = lst_size(stack_a);
-		array->arr = (int *)malloc(sizeof(int) * array->size);
-		create(array, stack_a);
-		sorting(&stack_a, &stack_b, array);
+		instruction = get_next_line(0);
+		while (instruction)
+		{
+			r(instruction, &stack_a, &stack_b);
+			free(instruction);
+			instruction = get_next_line(0);
+		}
+		result(stack_a, stack_b);
 	}
 	else
 	{
 		write(1, "Error\n", 6);
 		exit(0);
 	}
-	free(array);
 	return (0);
 }
